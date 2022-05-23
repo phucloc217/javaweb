@@ -38,38 +38,35 @@
                 <table class="table table-success table-striped table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">STT</th>
                             <th scope="col">Mã lớp</th>
                             <th scope="col">Tên lớp</th>
                             <th scope="col">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>
+                    <th:block th:each="class : ${classes}">
+                           <tr>
+                        <td th:utext="${class.malop}"></td>
+                        <td th:utext="${class.tenlop}"></td>
+                        <td>
 
-                                <a href="#" class="btn btn-secondary btn-warning">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-
-
-                                <a href="#" class="btn btn-secondary btn-danger m`">
-                                    <i class="fa-solid fa-eraser"></i>
-                                </a>
+                            <a href="#" class="btn btn-secondary btn-warning">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
 
 
+                            <a href="#" class="btn btn-secondary btn-danger m`">
+                                <i class="fa-solid fa-eraser"></i>
+                            </a>
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@mdo</td>
-                        </tr>
+
+
+                        </td>
+                    </tr>
+                     
+                    </th:block>
+                 
+                   
                     </tbody>
                 </table>  
             </div>

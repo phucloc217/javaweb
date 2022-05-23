@@ -16,12 +16,13 @@ import javax.persistence.Table;
  * @author locng
  */
 @Entity
-@Table(name = "customer")
+@Table(name = "lop")
 public class Lop {
     @Id
     @Column(name = "malop")
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer malop;
+    
     private String tenlop;
 
     public Lop() {
