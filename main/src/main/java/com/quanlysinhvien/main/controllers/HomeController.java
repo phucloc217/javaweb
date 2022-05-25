@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -30,5 +31,14 @@ public class HomeController {
         List<Lop> ds = (List<Lop>) lopRepository.findAll();
         model.addAttribute("classes", ds);
         return "home";
+    }
+
+    @RequestMapping(value = "/addclass", method = RequestMethod.POST)
+    public String saveCustomer(@RequestParam String classname
+      , Model model)  {
+        Lop lop = new Lop();
+        lop.setTenlop(classname);
+        lopRepository.save(lop);
+        return "redirect:/";
     }
 }
