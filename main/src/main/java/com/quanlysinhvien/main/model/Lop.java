@@ -4,11 +4,13 @@
  */
 package com.quanlysinhvien.main.model;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,6 +26,9 @@ public class Lop {
     private Integer malop;
     
     private String tenlop;
+    
+    @OneToMany(mappedBy="lop")
+    private List<SinhVien> dssv;
 
     public Lop() {
     }
@@ -47,6 +52,14 @@ public class Lop {
 
     public void setTenlop(String tenlop) {
         this.tenlop = tenlop;
+    }
+
+    public List<SinhVien> getDssv() {
+        return dssv;
+    }
+
+    public void setDssv(List<SinhVien> dssv) {
+        this.dssv = dssv;
     }
     
 }

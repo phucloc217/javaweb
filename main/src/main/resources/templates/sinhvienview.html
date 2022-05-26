@@ -22,11 +22,11 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="/">Quản lý lớp</a>
+                            <a class="nav-link" hr+ef="/">Quản lý lớp</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="sinhvien">Quản lý sinh viên</a>
+                            <a class="nav-link active" href="sinhvien">Quản lý sinh viên</a>
                         </li>
                     </ul>
 
@@ -43,26 +43,30 @@
                 <table class="table table-success table-striped table-hover" id="table">
                     <thead>
                         <tr>
-                            <th scope="col">Mã lớp</th>
-                            <th scope="col">Tên lớp</th>
+                            <th scope="col">Mã sinh viên</th>
+                            <th scope="col">Tên sinh viên</th>
+                             <th scope="col">Ngày sinh</th>
+                              <th scope="col">Tên lớp</th>
                             <th scope="col">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <th:block th:each="class : ${classes}">
+                    <th:block th:each="student : ${students}">
                         <tr>
-                            <td th:utext="${class.malop}"></td>
-                            <td th:utext="${class.tenlop}"></td>
+                            <td th:utext="${student.masv}"></td>
+                            <td th:utext="${student.hoten}"></td>
+                            <td th:utext="${#dates.format(student.ngaysinh, 'dd-MM-yyyy')}"></td>
+                            <td th:utext="${student.lop.tenlop}"></td>
                             <td class="row me-0">
-                                <div class="col-2 p-0 m-0">
+                                <div class="col-3 p-0 m-0">
                                     <a href="#" class="btn btn-secondary btn-warning">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                 </div> 
 
-                                <div class="col-2 p-0 m-0">
-                                    <form :form action="delete" method="POST" modelAttribute="lop" class="m-0">
-                                        <input name="classID" type="hidden" th:value="${class.malop}"/>
+                                <div class="col-3 p-0 m-0">
+                                    <form :form action="deletesv" method="POST" modelAttribute="sinhvien" class="m-0">
+                                        <input name="studentID" type="hidden" th:value="${student.masv}"/>
                                         <button  type="submit" class="btn btn-danger">      
                                             <i class="fa-solid fa-eraser"></i>
                                         </button>

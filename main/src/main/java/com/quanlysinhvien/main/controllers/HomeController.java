@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,11 +35,23 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/addclass", method = RequestMethod.POST)
-    public String saveCustomer(@RequestParam String classname
-      , Model model)  {
+    public String saveClass(@RequestParam String classname,
+             Model model) {
+        // lopRepository.find
         Lop lop = new Lop();
         lop.setTenlop(classname);
         lopRepository.save(lop);
+        return "redirect:/";
+    }
+
+    /**
+     *
+     * @param classID
+     * @return
+     */
+    @PostMapping("/delete")
+    public String deleteClass(@RequestParam Integer classID) {
+       lopRepository.deleteById(classID);
         return "redirect:/";
     }
 }
