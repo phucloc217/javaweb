@@ -60,13 +60,6 @@ public class SinhVienController {
         }
         return "redirect:/sinhvien";
     }
-//
-//    /**
-//     *
-//     * @param classID
-//     * @return
-//     */
-
     @PostMapping("/deletesv")
     public String deleteStudent(@RequestParam String studentID) {
         SinhVien sv = sinhVienRepository.findById(studentID);
