@@ -36,7 +36,7 @@
 
 
         <div class="container">
-
+            <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
             <button type="button" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Thêm sinh viên</button>
 
             <div class="row mt-2">
@@ -45,14 +45,13 @@
                         <tr>
                             <th scope="col">Mã sinh viên</th>
                             <th scope="col">Tên sinh viên</th>
-                             <th scope="col">Ngày sinh</th>
-                              <th scope="col">Tên lớp</th>
+                            <th scope="col">Ngày sinh</th>
+                            <th scope="col">Tên lớp</th>
                             <th scope="col">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <th:block th:each="student : ${students}">
-                        <tr>
+                        <tr th:each="student : ${students}">
                             <td th:utext="${student.masv}"></td>
                             <td th:utext="${student.hoten}"></td>
                             <td th:utext="${#dates.format(student.ngaysinh, 'dd-MM-yyyy')}"></td>
@@ -73,14 +72,8 @@
                                     </form>
 
                                 </div> 
-
-
                             </td>
                         </tr>
-
-                    </th:block>
-
-
                     </tbody>
                 </table>  
             </div>
@@ -96,7 +89,7 @@
                     </div>
                     <div class="modal-body">
                         <form :form action="addsv" method="post" modelAttribute="sinhvien">
-                             <div class="mb-3">
+                            <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Mã sinh viên</label>
                                 <input path="name" type="text"class="form-control" id="studentid" name="studentID" required="true"/>
 
@@ -106,7 +99,7 @@
                                 <input path="name" type="text"class="form-control" id="studentName" name="studentName" required="true"/>
 
                             </div>
-                             <div class="mb-3">
+                            <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Ngày sinh</label>
                                 <input path="name" type="date"class="form-control" id="birthday" name="birthday" required="true"/>
                             </div>
@@ -114,8 +107,8 @@
                                 <label for="recipient-name" class="col-form-label">Lớp</label>
                                 <select id="id" name="classID" class="form-control">
                                     <th:block th:each="class : ${classes}">
-                                          <option th:value="${class.malop}" th:utext="${class.tenlop}"></option>
-                                        
+                                        <option th:value="${class.malop}" th:utext="${class.tenlop}"></option>
+
                                     </th:block>
                                 </select>
 
@@ -124,7 +117,7 @@
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                 <button type="submit" class="btn btn-primary">Thêm</button>
                             </div>
-                            
+
                         </form>
                     </div>
 

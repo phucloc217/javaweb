@@ -29,25 +29,23 @@
                             <a class="nav-link" href="sinhvien">Quản lý sinh viên</a>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </nav>
-
-
         <div class="container pb-3 pt-3">         
             <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
             <button type="button" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Thêm lớp</button>
             <div class="row mt-2">
                 <table class="table table-success table-striped table-hover" id="table">
-                    <th scope="col">Mã lớp</th>
-                    <th scope="col">Tên lớp</th>
-                    <th scope="col">Thao tác</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th scope="col">Mã lớp</th>
+                            <th scope="col">Tên lớp</th>
+                            <th scope="col">Thao tác</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <th:block th:each="class : ${classes}">
-                        <tr>
+                        <tr th:each="class : ${classes}">
                             <td th:utext="${class.malop}"></td>
                             <td th:utext="${class.tenlop}"></td>
                             <td class="row me-0">
@@ -64,22 +62,13 @@
                                             <i class="fa-solid fa-eraser"></i>
                                         </button>
                                     </form>
-
                                 </div> 
-
-
                             </td>
                         </tr>
-
-                    </th:block>
-
-
                     </tbody>
                 </table>  
             </div>
         </div>
-
-
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
