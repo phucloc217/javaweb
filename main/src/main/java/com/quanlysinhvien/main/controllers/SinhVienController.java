@@ -8,7 +8,6 @@ import com.quanlysinhvien.main.model.Lop;
 import com.quanlysinhvien.main.model.LopRepository;
 import com.quanlysinhvien.main.model.SinhVien;
 import com.quanlysinhvien.main.model.SinhVienRepository;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -35,18 +35,15 @@
         </nav>
 
 
-        <div class="container">
-
+        <div class="container pb-3 pt-3">         
+            <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
             <button type="button" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Thêm lớp</button>
-
             <div class="row mt-2">
                 <table class="table table-success table-striped table-hover" id="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Mã lớp</th>
-                            <th scope="col">Tên lớp</th>
-                            <th scope="col">Thao tác</th>
-                        </tr>
+                    <th scope="col">Mã lớp</th>
+                    <th scope="col">Tên lớp</th>
+                    <th scope="col">Thao tác</th>
+                    </tr>
                     </thead>
                     <tbody>
                     <th:block th:each="class : ${classes}">
@@ -95,7 +92,6 @@
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Tên lớp</label>
                                 <input path="name" type="text"class="form-control" id="classname" name="classname" required="true"/>
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
