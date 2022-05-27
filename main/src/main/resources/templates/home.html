@@ -34,6 +34,7 @@
         </nav>
         <div class="container pb-3 pt-3">         
             <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+            <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
             <button type="button" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Thêm lớp</button>
             <div class="row mt-2">
                 <table class="table table-success table-striped table-hover" id="table">
@@ -50,9 +51,9 @@
                             <td th:utext="${class.tenlop}"></td>
                             <td class="row me-0">
                                 <div class="col-2 p-0 m-0">
-                                    <a href="#" class="btn btn-secondary btn-warning">
+                                    <button  type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" th:data-bs-id="${class.malop}" th:data-bs-name="${class.tenlop}">  
                                         <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
+                                    </button>
                                 </div> 
 
                                 <div class="col-2 p-0 m-0">
@@ -93,7 +94,55 @@
             </div>
         </div>
 
+        <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Thông tin lớp</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form :form action="updateclass" method="post" modelAttribute="lop">
+                             <div class="mb-3">
+                                <label for="updateID" class="col-form-label">Mã lớp</label>
+                                <input path="name" type="text"class="form-control" id="updateID" name="classID" disabled="true"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateClassname" class="col-form-label">Tên lớp</label>
+                                <input path="name" type="text"class="form-control" id="updateClassname" name="classname" required="true"/>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </div>
+                        </form>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var exampleModal = document.getElementById('updateModal')
+            exampleModal.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                var button = event.relatedTarget
+                // Extract info from data-bs-* attributes
+                var id = button.getAttribute('data-bs-id')
+                var name = button.getAttribute('data-bs-name')
+                // If necessary, you could initiate an AJAX request here
+                // and then do the updating in a callback.
+                //
+                // Update the modal's content.
+                $("#updateID").val(id)
+                $("#updateClassname").val(name)
+//                var modalBodyInput = exampleModal.querySelector('.modal-body input')
+//
+//               
+//                modalBodyInput.value = id
+            })
+
+        </script>
         <script src="js/main.js"></script>
     </body>
 </html>

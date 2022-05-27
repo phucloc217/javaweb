@@ -52,7 +52,6 @@ public class SinhVienController {
             SinhVien sv = new SinhVien();
             sv.setMasv(studentID);
             sv.setHoten(studentName);
-
             sv.setNgaysinh(date);
             Lop lop = lopRepository.findById(Integer.parseInt(classID)).orElse(null);
             sv.setLop(lop);
