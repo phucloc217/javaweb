@@ -14,7 +14,7 @@ import org.springframework.data.repository.query.Param;
  */
 public interface SinhVienRepository extends CrudRepository<SinhVien, Integer>  {
 
-    @Query(value = "SELECT c FROM SinhVien c WHERE c.masv LIKE '%' || :keyword || '%'")
+    @Query(value = "SELECT c FROM SinhVien c WHERE c.masv LIKE :keyword")
     public SinhVien findById(@Param("keyword") String keyword);
 
     

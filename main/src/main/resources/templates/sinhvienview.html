@@ -22,7 +22,7 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                         <li class="nav-item">
-                            <a class="nav-link" hr+ef="/">Quản lý lớp</a>
+                            <a class="nav-link" href="/">Quản lý lớp</a>
                         </li>
 
                         <li class="nav-item">
@@ -91,20 +91,40 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Thêm lớp</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Thêm sinh viên</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form :form action="addclass" method="post" modelAttribute="lop">
+                        <form :form action="addsv" method="post" modelAttribute="sinhvien">
+                             <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Mã sinh viên</label>
+                                <input path="name" type="text"class="form-control" id="studentid" name="studentID" required="true"/>
+
+                            </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Tên lớp</label>
-                                <input path="name" type="text"class="form-control" id="classname" name="classname"/>
+                                <label for="recipient-name" class="col-form-label">Tên sinh viên</label>
+                                <input path="name" type="text"class="form-control" id="studentName" name="studentName" required="true"/>
+
+                            </div>
+                             <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Ngày sinh</label>
+                                <input path="name" type="date"class="form-control" id="birthday" name="birthday" required="true"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Lớp</label>
+                                <select id="id" name="classID" class="form-control">
+                                    <th:block th:each="class : ${classes}">
+                                          <option th:value="${class.malop}" th:utext="${class.tenlop}"></option>
+                                        
+                                    </th:block>
+                                </select>
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                 <button type="submit" class="btn btn-primary">Thêm</button>
                             </div>
+                            
                         </form>
                     </div>
 
