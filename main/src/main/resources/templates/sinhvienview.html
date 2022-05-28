@@ -58,9 +58,9 @@
                             <td th:utext="${student.lop.tenlop}"></td>
                             <td class="row me-0">
                                 <div class="col-3 p-0 m-0">
-                                    <a href="#" class="btn btn-secondary btn-warning">
+                                    <button  type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" th:data-bs-id="${student.masv}" th:data-bs-name="${student.hoten}" th:data-bs-birthday="${#dates.format(student.ngaysinh, 'yyyy-MM-dd')}" th:data-bs-class="${student.lop.malop}">  
                                         <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
+                                    </button>
                                 </div> 
 
                                 <div class="col-3 p-0 m-0">
@@ -126,6 +126,69 @@
         </div>
 
 
+        <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Thông tin sinh viên</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form :form action="updatesv" method="post" modelAttribute="sinhvien">
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Mã sinh viên</label>
+                                <input path="name" type="text"class="form-control" id="updateID" name="studentID" readonly="true"/>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Tên sinh viên</label>
+                                <input path="name" type="text"class="form-control" id="updateName" name="studentName" required="true"/>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Ngày sinh</label>
+                                <input path="name" type="date"class="form-control" id="updateBirthday" name="birthday" required="true"/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Lớp</label>
+                                <select id="updateClass" name="classID" class="form-control">
+                                    <th:block th:each="class : ${classes}">
+                                        <option th:value="${class.malop}" th:utext="${class.tenlop}"></option>
+
+                                    </th:block>
+                                </select>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script >
+            var exampleModal = document.getElementById('updateModal')
+            exampleModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget
+                var id = button.getAttribute('data-bs-id')
+                var name = button.getAttribute('data-bs-name')
+                var birthday = button.getAttribute('data-bs-birthday')
+                var cls = button.getAttribute('data-bs-class') 
+                $("#updateID").val(id)
+                
+                $("#updateName").val(name)
+                 var x = document.getElementById("updateBirthday");
+                 x.value = birthday
+                 
+                 $("#updateClass").val(cls).change()
+            })
+
+        </script>
         <script src="js/main.js"></script>
     </body>
 </html>

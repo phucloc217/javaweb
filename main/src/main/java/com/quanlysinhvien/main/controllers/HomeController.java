@@ -57,19 +57,17 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/editclass", method = RequestMethod.POST)
-    public String editClass(@RequestParam Integer classID, @RequestParam String classname,
+    @RequestMapping(value = "/updateclass", method = RequestMethod.POST)
+    public String editClass(@RequestParam String updateID, @RequestParam String updateClassname,
             Model model, RedirectAttributes redirAttrs) {
-        Lop lop = lopRepository.findById(classID).orElse(null);
+        Lop lop = lopRepository.findById(Integer.parseInt(updateID)).orElse(null);
         if (lop != null) {
-            lop.setTenlop(classname);
+            lop.setTenlop(updateClassname);
             lopRepository.save(lop);
             redirAttrs.addFlashAttribute("success", "Cập nhật thành công");
+        } else {
+            redirAttrs.addFlashAttribute("error", "Cập nhật không thành công");
         }
-        else
-            {
-                 redirAttrs.addFlashAttribute("error", "Cập nhật không thành công");
-            }
 
         return "redirect:/";
     }

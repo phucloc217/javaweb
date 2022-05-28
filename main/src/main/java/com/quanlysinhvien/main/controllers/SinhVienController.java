@@ -57,14 +57,37 @@ public class SinhVienController {
             sv.setLop(lop);
             sinhVienRepository.save(sv);
             redirAttrs.addFlashAttribute("success", "Thêm thành công");
+        } else {
+            redirAttrs.addFlashAttribute("error", "Mã sinh viên đã tồn tại!");
         }
         return "redirect:/sinhvien";
     }
+
     @PostMapping("/deletesv")
-    public String deleteStudent(@RequestParam String studentID , RedirectAttributes redirAttrs) {
+    public String deleteStudent(@RequestParam String studentID, RedirectAttributes redirAttrs) {
         SinhVien sv = sinhVienRepository.findById(studentID);
         sinhVienRepository.delete(sv);
         redirAttrs.addFlashAttribute("success", "Xóa thành công");
+        return "redirect:/sinhvien";
+    }
+
+    @RequestMapping(value = "/updatesv", method = RequestMethod.POST)
+    public String updateStudent(@RequestParam String studentID, @RequestParam String studentName, @RequestParam String birthday, @RequestParam String classID,
+            Model model, RedirectAttributes redirAttrs) throws ParseException {
+        SinhVien sv = sinhVienRepository.findById(studentID);
+        if (sv != null) {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
+
+            sv.setMasv(studentID);
+            sv.setHoten(studentName);
+            sv.setNgaysinh(date);
+            Lop lop = lopRepository.findById(Integer.parseInt(classID)).orElse(null);
+            sv.setLop(lop);
+            sinhVienRepository.save(sv);
+            redirAttrs.addFlashAttribute("success", "Cập nhật thành công");
+        } else {
+            redirAttrs.addFlashAttribute("error", "Cập nhật không thành công!");
+        }
         return "redirect:/sinhvien";
     }
 }
