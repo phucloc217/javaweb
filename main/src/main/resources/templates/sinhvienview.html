@@ -55,10 +55,11 @@
                             <td th:utext="${student.masv}"></td>
                             <td th:utext="${student.hoten}"></td>
                             <td th:utext="${#dates.format(student.ngaysinh, 'dd-MM-yyyy')}"></td>
-                            <td th:utext="${student.lop.tenlop}"></td>
+                            <td th:utext="${student.lop.tenlop}" th:if="${student.lop}!=null"></td>
+                            <td th:if="${student.lop}==null"></td>
                             <td class="row me-0">
                                 <div class="col-3 p-0 m-0">
-                                    <button  type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" th:data-bs-id="${student.masv}" th:data-bs-name="${student.hoten}" th:data-bs-birthday="${#dates.format(student.ngaysinh, 'yyyy-MM-dd')}" th:data-bs-class="${student.lop.malop}">  
+                                    <button  type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" th:data-bs-id="${student.masv}" th:data-bs-name="${student.hoten}" th:data-bs-birthday="${#dates.format(student.ngaysinh, 'yyyy-MM-dd')}" th:data-bs-class="${student.lop}!=null?${student.lop.malop}:''">  
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </button>
                                 </div> 
